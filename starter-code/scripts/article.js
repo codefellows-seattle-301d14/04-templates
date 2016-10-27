@@ -21,16 +21,27 @@ Article.prototype.toHtml = function() {
   //       - Select your template from the DOM.
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
+  var source = $('#blogArticle-template').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
 };
 
 ourLocalData.sort(function(a,b) {
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
 
-ourLocalData.forEach(function(ele) {
-  articles.push(new Article(ele));
+ourLocalData.forEach(function(ourLocalDataObject) {
+  articles.push(new Article(ourLocalDataObject));
 });
 
-articles.forEach(function(a){
-  $('#articles').append(a.toHtml());
+articles.forEach(function(newOurLocalDataObject){
+  $('#articles').append(newOurLocalDataObject.toHtml());
 });
+
+// ourLocalData.forEach(function(ele) {
+//   articles.push(new Article(ele));
+// });
+
+// articles.forEach(function(a){
+//   $('#articles').append(a.toHtml());
+// });
