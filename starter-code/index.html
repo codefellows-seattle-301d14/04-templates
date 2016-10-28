@@ -17,16 +17,18 @@
       specify the type!
     2. Insert correct expressions properties based on our Model.
     -->
-    <script id="" type="">
-      <article class="clearfix" data-author="" data-category="">
+    <script id="articles-template" type="text/x-handlebars-template">
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
         <header>
-          <h1></h1>
+          <h1>{{title}}</h1>
           <div class="byline">
-            By <address><a href=""></a></address>
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
             {{publishStatus}}
           </div>
         </header>
-        <section class="article-body"></section>
+        <section class="article-body">
+          {{{body}}}
+        </section>
         <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>
@@ -94,6 +96,8 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- TODO: Include Handlebars.JS -->
+    <!-- done -->
+    <script src="vendor/scripts/handlebars-v4.0.5.js"></script>
     <script src="scripts/blogArticles.js"></script>
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
