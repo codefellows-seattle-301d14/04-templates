@@ -51,6 +51,9 @@ Article.prototype.categoryFilter = function() {
 
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
-  $('#category-filter').append(a.categoryFilter());
   $('#author-filter').append(a.authorFilter());
+  // var category = $(this).category;
+  if ($('#category-filter option[value="' + a.category + '"]').length === 0) {
+    $('#category-filter').append(a.categoryFilter());
+  };
 });
