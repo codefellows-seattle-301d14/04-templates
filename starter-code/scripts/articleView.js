@@ -2,15 +2,24 @@
 var articleView = {};
 
 articleView.populateFilters = function() {
+
   $('article').not('.template').each(function() {
     var authorName, category, optionTag;
-    authorName = $(this).find('address a').text();
-    optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
+    authorName = {authorName:$(this).find('address a').text()};
+    var sourceAuthor = $('#stretchAuthor-template').html();
+    var renderAuthor = Handlebars.compile(sourceAuthor);
+    optionTag = renderAuthor(authorName);
     $('#author-filter').append(optionTag);
 
-    category = $(this).attr('data-category');
-    optionTag = '<option value="' + category + '">' + category + '</option>';
-    if ($('#category-filter option[value="' + category + '"]').length === 0) {
+    // console.log($(this).attr('data-category'));
+    category = {catagoryName:$(this).attr('data-category')};
+    var sourceCatagory = $('#stretchCatagory-template').html();
+    console.log(category.catagoryName);
+    console.log(category);
+    var renderCatagory = Handlebars.compile(sourceCatagory);
+    optionTag = renderCatagory(category);
+    // '<option value="' + category + '">' + category + '</option>';
+    if ($('#category-filter option[value="' + category.catagoryName + '"]').length === 0) {
       $('#category-filter').append(optionTag);
     }
   });
