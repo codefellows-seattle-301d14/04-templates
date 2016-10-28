@@ -17,12 +17,13 @@
       specify the type!
     2. Insert correct expressions properties based on our Model.
     -->
-    <script id="" type="">
-      <article class="clearfix" data-author="" data-category="">
+    <script id="articleTemplate" type="text/x-handlebars-template">
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
         <header>
-          <h1></h1>
+          <h1>{{title}}</h1>
           <div class="byline">
-            By <address><a href=""></a></address>
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            <p>{{{body}}}<p>
             {{publishStatus}}
           </div>
         </header>
@@ -38,6 +39,12 @@
         option element, and render the list once you have data
         to populate it with.
        -->
+      <script id="authorTemplate" type="text/x-handlebars-template">
+          <option value="{{author}}">{{author}}</option>
+      </script>
+      <script id="categoryTemplate" type="text/x-handlebars-template">
+          <option value="{{category}}">{{category}}</option>
+      </script>
   </head>
   <body>
     <header class="site-header clearfix">
@@ -59,7 +66,7 @@
       </nav>
     </header>
     <main>
-      <section id="articles" class="tab-content">
+        <section id="articles" class="tab-content">
         <div>
           <ul id="filters">
             <li>
@@ -74,7 +81,7 @@
             </li>
           </ul>
         </div>
-      </section>
+      </section> -->
       <section id="about" class="tab-content">
         <header>
           Welcome to my Blog
@@ -94,6 +101,7 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- TODO: Include Handlebars.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <script src="scripts/blogArticles.js"></script>
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
