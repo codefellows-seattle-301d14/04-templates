@@ -34,9 +34,6 @@ ourLocalData.forEach(function(ele) {
   articles.push(new Article(ele));
 });
 
-articles.forEach(function(a){
-  $('#articles').append(a.toHtml());
-});
 
 Article.prototype.authorFilter = function() {
   var source = $('#author-filter-template').html();
@@ -44,9 +41,6 @@ Article.prototype.authorFilter = function() {
   return templateRender(this);
 };
 
-articles.forEach(function(a){
-  $('#author-filter').append(a.authorFilter());
-});
 
 Article.prototype.categoryFilter = function() {
   var source = $('#category-filter-template').html();
@@ -54,6 +48,9 @@ Article.prototype.categoryFilter = function() {
   return templateRender(this);
 };
 
+
 articles.forEach(function(a){
+  $('#articles').append(a.toHtml());
   $('#category-filter').append(a.categoryFilter());
+  $('#author-filter').append(a.authorFilter());
 });
