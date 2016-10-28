@@ -22,7 +22,8 @@
         <header>
           <h1>{{title}}</h1>
           <div class="byline">
-            By <address><a href="">{{authorUrl}}</a></address>
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            <p>{{{body}}}<p>
             {{publishStatus}}
           </div>
         </header>
@@ -38,6 +39,12 @@
         option element, and render the list once you have data
         to populate it with.
        -->
+      <script id="authorTemplate" type="text/x-handlebars-template">
+          <option value="{{author}}">{{author}}</option>
+      </script>
+      <script id="categoryTemplate" type="text/x-handlebars-template">
+          <option value="{{category}}">{{category}}</option>
+      </script>
   </head>
   <body>
     <header class="site-header clearfix">
@@ -59,7 +66,7 @@
       </nav>
     </header>
     <main>
-      <section id="articles" class="tab-content">
+        <section id="articles" class="tab-content">
         <div>
           <ul id="filters">
             <li>
@@ -74,7 +81,7 @@
             </li>
           </ul>
         </div>
-      </section>
+      </section> -->
       <section id="about" class="tab-content">
         <header>
           Welcome to my Blog

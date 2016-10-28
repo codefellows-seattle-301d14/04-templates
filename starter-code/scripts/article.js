@@ -1,5 +1,7 @@
 var articles = [];
 
+
+
 function Article (opts) {
   this.author = opts.author;
   this.authorUrl = opts.authorUrl;
@@ -17,11 +19,36 @@ Article.prototype.toHtml = function() {
   //   or say "(draft)" if it has no publication date:
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
   this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+
   // TODO: Use handlebars to render your articles!
   //       - Select your template from the DOM.
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
+  //DONE
+
+  var source = $('#articleTemplate').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
+
+
 };
+Article.prototype.toFunTime = function() {
+  var sourceAuthor = $('#authorTemplate').html();
+  var authorTemplateRender = Handlebars.compile(sourceAuthor);
+  return authorTemplateRender(this);
+};
+
+Article.prototype.toCodeTime = function() {
+
+  var sourceCategory = $('#categoryTemplate').html();
+  var categoryTemplateRender = Handlebars.compile(sourceCategory);
+  return categoryTemplateRender(this);
+  if ($('#category-filter option[value="' + category + '"]').length === 0) {
+    // $('#category-filter').remove(optionTag);
+    console.log('wow!');
+  }
+};
+
 
 ourLocalData.sort(function(a,b) {
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
@@ -33,4 +60,6 @@ ourLocalData.forEach(function(ele) {
 
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
+  $('#author-filter').append(a.toFunTime());
+  $('#category-filter').append(a.toCodeTime());
 });
