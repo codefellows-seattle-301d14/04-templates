@@ -25,6 +25,7 @@ Article.prototype.toHtml = function() {
   return templateRender(this);
 };
 
+
 ourLocalData.sort(function(a,b) {
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
@@ -35,4 +36,24 @@ ourLocalData.forEach(function(ele) {
 
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
+});
+
+Article.prototype.authorFilter = function() {
+  var source = $('#author-filter-template').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
+};
+
+articles.forEach(function(a){
+  $('#author-filter').append(a.authorFilter());
+});
+
+Article.prototype.categoryFilter = function() {
+  var source = $('#category-filter-template').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
+};
+
+articles.forEach(function(a){
+  $('#category-filter').append(a.categoryFilter());
 });
