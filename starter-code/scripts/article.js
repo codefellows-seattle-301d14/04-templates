@@ -1,12 +1,10 @@
 var articles = [];
 
 function Article (opts) {
-  this.author = opts.author;
-  this.authorUrl = opts.authorUrl;
-  this.title = opts.title;
-  this.category = opts.category;
-  this.body = opts.body;
-  this.publishedOn = opts.publishedOn;
+  //Done
+  for(key in opts){
+    this[key] = opts[key];
+  }
 }
 
 Article.prototype.toHtml = function() {
@@ -21,7 +19,12 @@ Article.prototype.toHtml = function() {
   //       - Select your template from the DOM.
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
+  //Done!
+  var source = $('#article-template').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
 };
+
 
 ourLocalData.sort(function(a,b) {
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
@@ -31,6 +34,26 @@ ourLocalData.forEach(function(ele) {
   articles.push(new Article(ele));
 });
 
+
+Article.prototype.authorFilter = function() {
+  var source = $('#author-filter-template').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
+};
+
+
+Article.prototype.categoryFilter = function() {
+  var source = $('#category-filter-template').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
+};
+
+
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
+  $('#author-filter').append(a.authorFilter());
+  // var category = $(this).category;
+  if ($('#category-filter option[value="' + a.category + '"]').length === 0) {
+    $('#category-filter').append(a.categoryFilter());
+  };
 });
