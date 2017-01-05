@@ -19,13 +19,13 @@ Article.prototype.toHtml = function() {
 
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
   this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
-  // TODO: Use handlebars to render your articles!
+  // DONE: Use handlebars to render your articles!
   //       - Select your template from the DOM.
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
-  var source = $('#article-template').toHtml();
+  var source = $('#article-template').html();
   var templateRender = Handlebars.compile(source);
-  var context = articleDataSet;
+  var context = ourLocalData;
   return templateRender(this);
 };
 

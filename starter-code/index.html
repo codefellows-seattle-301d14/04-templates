@@ -12,7 +12,7 @@
     <!-- Code Fellows favicon -->
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png">
     <!--
-  TODO: Complete this script tag below to hold the Handlebars template.
+  DONE: Complete this script tag below to hold the Handlebars template.
     1. Be sure to give it a meaningful id attribute, and don't forget to
       specify the type!
     2. Insert correct expressions properties based on our Model.
@@ -22,11 +22,11 @@
         <header>
           <h1>{{title}}</h1>
           <div class="byline">
-            By <address><a href="{{authorUrl}}"></a></address>
+            By <address>{{author}}<a href="{{authorUrl}}"></a></address>
             {{publishStatus}}
           </div>
         </header>
-        <section class="article-body">{{body}}</section>
+        <section class="article-body">{{{body}}}</section>
         <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>

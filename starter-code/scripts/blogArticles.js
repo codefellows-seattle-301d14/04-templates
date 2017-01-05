@@ -1,6 +1,6 @@
 var ourLocalData = [
   {
-    title:       'Bacon Ipsum', 
+    title:       'Bacon Ipsum',
     category:    'food',
     author:      'Kevin Bacon',
     authorUrl:   'http://www.imdb.com/name/nm0000102/',
